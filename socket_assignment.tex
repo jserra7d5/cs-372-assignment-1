@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{fancyhdr}
+
+
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny,
+    showstringspaces=false
+}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Socket Programming Assignment}
+\lhead{CS 372}
+\cfoot{\thepage}
+
+\title{Socket Programming Assignment}
+\author{Joseph Serra}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+
+Code repository: \url{https://github.com/jserra7d5/cs-372-assignment-1}\\
+
+This assignment demonstrates socket programming in Python using the raw socket API. Three programs were implemented to showcase different aspects of network communication:
+
+\begin{enumerate}
+    \item \textbf{simple\_get.py} - Basic HTTP GET client for small files
+    \item \textbf{large\_file\_get.py} - HTTP GET client with loop for large files
+    \item \textbf{simple\_server.py} - Simple HTTP server
+\end{enumerate}
+
+All programs use the Python socket API as required.
+
+\section{Implementation Details}
+
+\subsection{Simple GET Client (simple\_get.py)}
+
+This program connects to \texttt{gaia.cs.umass.edu} and retrieves a small HTML file using a single \texttt{recv()} call.
+
+\textbf{Usage:}
+\begin{lstlisting}[language=bash]
+python3 simple_get.py
+\end{lstlisting}
+
+\textbf{Screenshot of simple\_get.py execution:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{simple_get_screenshot.png}
+    \caption{Execution of simple\_get.py showing HTTP GET request and response}
+    \label{fig:simple_get}
+\end{figure}
+
+\subsection{Large File GET Client (large\_file\_get.py)}
+
+This program demonstrates handling larger files by implementing a receive loop that continues until the server closes the connection.
+
+\textbf{Usage:}
+\begin{lstlisting}[language=bash]
+python3 large_file_get.py
+\end{lstlisting}
+
+\textbf{Screenshot of large\_file\_get.py execution:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{large_get_screenshot_1.png}
+    \caption{(Pt. 1) Execution of large\_file\_get.py showing chunked file retrieval}
+    \label{fig:large_get_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{large_get_screenshot_2.png}
+    \caption{(Pt. 2) Execution of large\_file\_get.py showing chunked file retrieval}
+    \label{fig:large_get_2}
+\end{figure}
+
+\subsection{Simple HTTP Server (simple\_server.py)}
+
+This program creates a basic HTTP server that listens on localhost and serves a simple HTML response to web browsers.
+
+\textbf{Usage:}
+\begin{lstlisting}[language=bash]
+python3 simple_server.py
+\end{lstlisting}
+
+Then open browser to: \texttt{http://127.0.0.1:8080}
+
+\textbf{Screenshot of simple\_server.py execution:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{server_output.png}
+    \caption{Execution of simple\_server.py showing server startup and client connections}
+    \label{fig:server_terminal}
+\end{figure}
+
+\textbf{Screenshot of browser accessing the server:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{browser_output.png}
+    \caption{Browser view of the HTTP server response}
+    \label{fig:server_browser}
+\end{figure}
+
+
+\end{document}
